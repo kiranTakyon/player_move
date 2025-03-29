@@ -16,9 +16,8 @@ class MainGame extends FlameGame with KeyboardEvents {
   }
 
   @override
-  KeyEventResult onKeyEvent(
-      RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    final isKeyDown = event is RawKeyDownEvent;
+  KeyEventResult onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    final isKeyDown = event is KeyDownEvent;
     Direction? keyDirection;
 
     if (event.logicalKey == LogicalKeyboardKey.keyA) {
@@ -37,7 +36,7 @@ class MainGame extends FlameGame with KeyboardEvents {
       _player.direction = Direction.none;
     }
 
-    return super.onKeyEvent(event, keysPressed);
+    return KeyEventResult.handled;
   }
 
   void onJoyPadDirectionChanged(Direction direction) {
